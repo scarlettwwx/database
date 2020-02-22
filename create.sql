@@ -63,7 +63,7 @@ CREATE TABLE beneficiary
 
 CREATE TABLE project (
   proID INTEGER PRIMARY KEY NOT NULL,
-  name VARCHAR(20),
+  name VARCHAR(100),
   details VARCHAR(1000),
   budget INTEGER,
   raisedAmt INTEGER,
