@@ -96,3 +96,32 @@ CREATE TABLE healthcare(
   name VARCHAR(50),
   address VARCHAR(50)
 );
+                                        
+CREATE TABLE reviews(
+  email VARCHAR(50) NOT NULL,
+  proID INTEGER NOT NULL,
+  grade INTEGER,
+  comment VARCHAR(50),
+  PRIMARY KEY(email, proID),
+  FOREIGN KEY(proID) REFERENCES project(proID),
+  FOREIGN KEY(email) REFERENCES donor(email)
+);
+
+CREATE TABLE workfor(
+  eid INTEGER NOT NULL,
+  proID INTEGER NOT NULL,
+  PRIMARY KEY (eid,proID),
+  FOREIGN KEY(proID) REFERENCES project(proID),
+  FOREIGN KEY(eid) REFERENCES employee(eid)
+);
+
+CREATE TABLE authors(
+  eid INTEGER NOT NULL,
+  proID INTEGER NOT NULL,
+  title VARCHAR(50) NOT NULL,
+  PRIMARY KEY(eid, proID, title),
+  FOREIGN KEY(proID) REFERENCES project(proID),
+  FOREIGN KEY(eid) REFERENCES employee(eid),
+  FOREIGN KEY(title) REFERENCES report(title)
+);
+
