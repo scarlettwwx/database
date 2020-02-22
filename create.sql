@@ -11,17 +11,17 @@ CREATE TABLE project (
   FOREIGN KEY(eid) REFERENCES employee(eid));
 
 CREATE TABLE report (
-  proID INTEGER, 
-  rtime DATE, 
+  proID INTEGER NOT NULL, 
+  rtime DATE NOT NULL, 
   title VARCHAR(100),
   detail VARCHAR(1000),
   PRIMARY KEY(proID, rtime)
   FOREIGN KEY(proID) REFERENCES project(proID)); 
 
 CREATE TABLE payment_in(
-  pid INTEGER,
-  email VARCHAR(50),
-  proID INTEGER,
+  pid INTEGER NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  proID INTEGER NOT NULL,
   amount INTEGER,
   ptime DATE,
   PRIMARY KEY(pid, email, proID)
@@ -30,9 +30,9 @@ CREATE TABLE payment_in(
 )
 
 CREATE TABLE payment_out(
-  pid INTEGER,
-  hid INTEGER,
-  proID INTEGER,
+  pid INTEGER NOT NULL,
+  hid INTEGER NOT NULL,
+  proID INTEGER NOT NULL,
   amount INTEGER NOT NULL,
   ptime DATE NOT NULL,
   PRIMARY KEY(pid, hid, proID)
@@ -41,13 +41,13 @@ CREATE TABLE payment_out(
 )
 
 CREATE TABLE supervisor(
-  name VARCHAR(30) PRIMARY KEY
+  name VARCHAR(30) PRIMARY KEY NOT NULL
   address VARCHAR(50)
   duty VARCHAR(200)
 )
 
 CREATE TABLE healthcare(
-  hid INTEGER PRIMARY KEY
+  hid INTEGER PRIMARY KEY NOT NULL
   name VARCHAR(50)
   address VARCHAR(50)
 )
