@@ -117,6 +117,26 @@ CREATE TABLE supervises
     FOREIGN KEY (proID) REFERENCES project(proID)
 );
 
+CREATE TABLE enrolls
+(
+    bid INTEGER NOT NULL,
+    proID INTEGER NOT NULL,
+    eid INTEGER NOT NULL,
+    PRIMARY KEY (bid,proID,eid),
+    FOREIGN KEY (bid) REFERENCES beneficiary(bid),
+    FOREIGN KEY (proID) REFERENCES project(proID),
+    FOREIGN KEY (eid) REFERENCES employee(eid)
+);
+
+CREATE TABLE receiveService
+(
+    bid INTEGER NOT NULL,
+    hid INTEGER NOT NULL,
+    amount INTEGER,
+    PRIMARY KEY (bid,hid),
+    FOREIGN KEY (bid) REFERENCES beneficiary(bid),
+    FOREIGN KEY (hid) REFERENCES healthcare_provider(hid)
+);
                                         
 CREATE TABLE reviews(
   email VARCHAR(50) NOT NULL,
