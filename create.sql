@@ -1,3 +1,16 @@
+DROP TABLE donor;
+DROP TABLE individual;
+DROP TABLE organization;
+DROP TABLE healthcare_provider;
+DROP TABLE employee;
+DROP TABLE beneficiary;
+DROP TABLE project;
+DROP TABLE report;
+DROP TABLE payment_in;
+DROP TABLE payment_out;
+DROP TABLE supervisor;
+
+-- Entity Set --
 CREATE TABLE donor
 (
     name VARCHAR(20),
@@ -9,7 +22,7 @@ CREATE TABLE donor
 CREATE TABLE individual
 (
     email VARCHAR(50) PRIMARY KEY NOT NULL,
-    FOREIGN KEY (email) REFERENCES donor
+    FOREIGN KEY (email) REFERENCES donor(email)
 );
 
 CREATE TABLE organization
@@ -17,7 +30,7 @@ CREATE TABLE organization
     email VARCHAR(50) PRIMARY KEY NOT NULL,
     type VARCHAR(20) NOT NULL,
     CONSTRAINT check_type CHECK (type IN ('profitable','non-profitable')),
-    FOREIGN KEY (email) REFERENCES donor
+    FOREIGN KEY (email) REFERENCES donor(email)
 );
 
 CREATE TABLE healthcare_provider
@@ -82,7 +95,7 @@ CREATE TABLE payment_out(
   ptime DATE NOT NULL,
   PRIMARY KEY(pid, hid, proID),
   FOREIGN KEY(proID) REFERENCES project(proID),
-  FOREIGN KEY(hid) REFERENCES healthcare(hid)
+  FOREIGN KEY(hid) REFERENCES healthcare_provider(hid)
 );
 
 CREATE TABLE supervisor(
@@ -91,8 +104,16 @@ CREATE TABLE supervisor(
   duty VARCHAR(200)
 );
 
-CREATE TABLE healthcare(
-  hid INTEGER PRIMARY KEY NOT NULL,
-  name VARCHAR(50),
-  address VARCHAR(50)
+-- Relationships --
+
+CREATE TABLE supervises
+(
+    name VARCHAR(20) NOT NULL,
+    address VARCHAR(100) NOT NULL,
+    proID INTEGER NOT NULL,
+    PRIMARY KEY (name, address, proID),
+    FOREIGN KEY (name) REFERENCES supervisor(name),
+    FOREIGN KEY (address) REFERENCES supervisor(address),
+    FOREIGN KEY (proID) REFERENCES project(proID)
 );
+
