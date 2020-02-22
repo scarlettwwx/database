@@ -82,7 +82,7 @@ CREATE TABLE payment_out(
   ptime DATE NOT NULL,
   PRIMARY KEY(pid, hid, proID),
   FOREIGN KEY(proID) REFERENCES project(proID),
-  FOREIGN KEY(hid) REFERENCES healthcare(hid)
+  FOREIGN KEY(hid) REFERENCES healthcare_provider(hid)
 );
 
 CREATE TABLE supervisor(
@@ -91,11 +91,6 @@ CREATE TABLE supervisor(
   duty VARCHAR(200)
 );
 
-CREATE TABLE healthcare(
-  hid INTEGER PRIMARY KEY NOT NULL,
-  name VARCHAR(50),
-  address VARCHAR(50)
-);
                                         
 CREATE TABLE reviews(
   email VARCHAR(50) NOT NULL,
