@@ -9,6 +9,12 @@ DROP TABLE report;
 DROP TABLE payment_in;
 DROP TABLE payment_out;
 DROP TABLE supervisor;
+DROP TABLE supervises;
+DROP TABLE enrolls;
+DROP TABLE receiveService;
+DROP TABLE workfor;
+DROP TABLE authors;
+DROP TABLE reviews;
 
 -- Entity Set --
 CREATE TABLE donor
@@ -112,8 +118,7 @@ CREATE TABLE supervises
     address VARCHAR(100) NOT NULL,
     proID INTEGER NOT NULL,
     PRIMARY KEY (name, address, proID),
-    FOREIGN KEY (name) REFERENCES supervisor(name),
-    FOREIGN KEY (address) REFERENCES supervisor(address),
+    FOREIGN KEY (name, address) REFERENCES supervisor(name, address),
     FOREIGN KEY (proID) REFERENCES project(proID)
 );
 
@@ -159,10 +164,14 @@ CREATE TABLE workfor(
 CREATE TABLE authors(
   eid INTEGER NOT NULL,
   proID INTEGER NOT NULL,
-  title VARCHAR(50) NOT NULL,
-  PRIMARY KEY(eid, proID, title),
+  --title VARCHAR(50) NOT NULL,
+  rtime DATE NOT NULL,
+  --PRIMARY KEY(eid, proID,rtime, title),
+  PRIMARY KEY (eid,proID,rtime),
   FOREIGN KEY(proID) REFERENCES project(proID),
   FOREIGN KEY(eid) REFERENCES employee(eid),
-  FOREIGN KEY(title) REFERENCES report(title)
+  FOREIGN KEY(proId,rtime) REFERENCES report(proId, rtime)
+
 );
+
 
