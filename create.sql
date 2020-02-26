@@ -86,8 +86,8 @@ CREATE TABLE payment_in(
   pid INTEGER NOT NULL,
   email VARCHAR(50) NOT NULL,
   proID INTEGER NOT NULL,
-  amount INTEGER,
-  ptime DATE,
+  amount INTEGER NOT NULL,
+  ptime DATE NOT NULL,
   PRIMARY KEY(pid, email, proID),
   FOREIGN KEY(proID) REFERENCES project(proID),
   FOREIGN KEY(email) REFERENCES donor(email)
