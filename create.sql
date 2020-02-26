@@ -69,7 +69,7 @@ CREATE TABLE project (
   raisedAmt INTEGER,
   startDate DATE,
   deadline  DATE,
-  eid INTEGER,
+  eid INTEGER NOT NULL,
   urgency INTEGER CHECK(urgency > 0 AND urgency < 4),
   FOREIGN KEY (eid) REFERENCES employee(eid)
   );
