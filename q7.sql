@@ -11,6 +11,10 @@ CREATE VIEW BigProjects (proId,name) AS
     WHERE project.proID = temp.tid AND temp.tamt > 5000;
 
 SELECT * FROM BigProjects;
+UPDATE BigProjects
+    SET NAME = 'Big Project 005'
+    WHERE proID = 60005;
+-- fails because the view definition contains a GROUP BY
 
 -- Create a view that returns the donors (name and email) that has made a donation to a project with urgency level 3.
 CREATE VIEW GenerousDonors (name,email) AS
@@ -23,3 +27,6 @@ CREATE VIEW GenerousDonors (name,email) AS
     WHERE donor.email = t.tacc;
 
 SELECT * FROM GenerousDonors;
+
+UPDATE GenerousDonors
+SET NAME = 'Generous Donors';
