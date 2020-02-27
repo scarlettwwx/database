@@ -31,7 +31,7 @@ class simpleJDBC
         // This is the url you must use for DB2.
         //Note: This url may not valid now !
         String url = "jdbc:db2://comp421.cs.mcgill.ca:50000/cs421";
-        Connection con = DriverManager.getConnection (url,"yxu258","aPW9gu6N") ; //change into group account when executing
+        Connection con = DriverManager.getConnection (url,"CS421G10","csDB0010") ;
         Statement statement = con.createStatement ( ) ;
 
         // Inserting records into the table donor and individual
